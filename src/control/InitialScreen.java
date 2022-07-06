@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import utils.Consts;
 
@@ -22,6 +23,7 @@ public class InitialScreen extends javax.swing.JFrame {
 	private JButton openButton;
 	private final String nomeImagemInicial = "im.png";
 	private static String[] levels = { "Level 1", "Level 2", "Level 3","Level 4" };
+	JMenuItem[] lvls = new JMenuItem[4];
 	
 	private JComboBox<String> box;
 	
@@ -56,13 +58,25 @@ public class InitialScreen extends javax.swing.JFrame {
 	private void configureMenu(){
 		JMenuBar barra = new JMenuBar();
 		setJMenuBar(barra);
-		JMenu lvl = new JMenu("Levels");
+		JMenu lvl = new JMenu("Novo Jogo");
+		HandlerStartButton handlerStart = new HandlerStartButton();
+		int i=0;
 		for (String e:levels){
-			lvl.add(e);
+			lvls[i] = new JMenuItem(e);
+			lvl.add(lvls[i]);
+			lvls[i].addActionListener(handlerStart);
+			/*lvls[i].addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent ev){
+
+				}
+			});*/
+			i++;
 		}
-		JMenu sair = new JMenu("Exit");
+		HandlerOpenButton handleOpener = new HandlerOpenButton();
+		JMenu load = new JMenu("Load");
+		load.addActionListener(handleOpener);
 		barra.add(lvl);
-		barra.add(sair);
+		barra.add(load);
 	}
 	private void configureStartButton(){
 		startButton = new JButton("Iniciar");
@@ -110,6 +124,10 @@ public class InitialScreen extends javax.swing.JFrame {
 
 	public class HandlerStartButton implements ActionListener{
 		public void actionPerformed(ActionEvent ev){
+			if(ev.getSource()==lvls[0]) Main.level = 1;
+			else if(ev.getSource()==lvls[1]) Main.level = 2;
+			else if(ev.getSource()==lvls[2]) Main.level = 3;
+			else if(ev.getSource()==lvls[3]) Main.level = 4;
 			Main.initialScreen.setVisible(false);  
 	    	Main.initialScreen.dispose();
 			Main.startGame();
