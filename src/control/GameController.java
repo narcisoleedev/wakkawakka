@@ -37,7 +37,8 @@ public class GameController {
 
         if(overlapGhostPacman) { 
         	pacman.setNumberLifes(pacman.getLifes()-1);
-        	if(pacman.getLifes()>0){
+			//NOTE: BUG DE REINICIALIZAÇÃO
+        	if(pacman.getLifes() == 0){
         		Main.gamePacMan.reStartGame(pacman.getLifes());
         	}
         	else{
