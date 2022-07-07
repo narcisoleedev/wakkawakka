@@ -4,6 +4,7 @@ import elements.Blinky;
 
 import elements.Cherry;
 import elements.Clyde;
+import elements.Clovis;
 import elements.Inky;
 import elements.PacDots;
 import elements.Pinky;
@@ -101,11 +102,17 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         clyde.setPosition (8,9);
         this.addElement(clyde);
         
+        Clovis clovis = new Clovis("lavaMonster.png");
+        clovis.setPosition(1,4);
+        if (Main.level == 4) {
+            this.addElement(clovis);
+        }
         
         for (int i=0;i<Consts.NUM_CELLS; i=i+1){
         	for(int j=0; j<Consts.NUM_CELLS; j=j+1){
         		switch (matrix[i][j]) {
         		case 1:
+                //NOTE: Muda as paredes da ultima fase
                     if (Main.level == 4){
                         Wall wall1=new Wall("lavawall.jpg");
                         wall1.setPosition (i,j);

@@ -15,7 +15,13 @@ public class GameController {
 	
     public void drawAllElements(ArrayList<Element> elemArray, Graphics g){
     	Pacman pacman=(Pacman) elemArray.get(0);
-    	int numberGhost=pacman.getNumberGhosttoEat();
+		// NOTE: Verificação da existencia do monstro de lava da fase 4
+		int numberGhost=pacman.getNumberGhosttoEat();
+		System.out.println(Main.level);
+		if (Main.level == 4){
+			numberGhost = numberGhost + 1;
+		}
+    	
     	for(int i=numberGhost+1; i<elemArray.size(); i++){
             elemArray.get(i).autoDraw(g);
         }
@@ -29,8 +35,10 @@ public class GameController {
         if(elements.isEmpty())
             return;
     	Pacman pacman = (Pacman)elements.get(0);
-    	int numberGhost = pacman.getNumberGhosttoEat();
-    	
+    	int numberGhost=pacman.getNumberGhosttoEat();
+		if (Main.level == 4){
+			numberGhost = numberGhost + 1;
+		}
         
     	checkElementColideWall(elements, numberGhost);
     	boolean overlapGhostPacman=checkOverlapGhostPacman(elements,pacman, numberGhost);
@@ -199,7 +207,11 @@ public class GameController {
         		
         		pacman.setStartTimePower(0);
         		Element e;
-        		for (int i=1;i<=pacman.getNumberGhosttoEat();i++){
+				int aux = pacman.getNumberGhosttoEat();
+				if (Main.level == 4){
+					aux = aux + 1;
+				}
+        		for (int i=1;i<=aux;i++){
         			e = elements.get(i);
         			if(e instanceof Blinky){
         				((Blinky) e).changeGhosttoNormal("blinky.png");
@@ -212,6 +224,10 @@ public class GameController {
         			}
         			if(e instanceof Clyde){
         				((Clyde) e).changeGhosttoNormal("clyde.png");
+        			}
+
+					if(e instanceof Clovis){
+        				((Clovis) e).changeGhosttoNormal("lavaMonster.png");
         			}
         			
                 }		
