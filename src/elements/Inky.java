@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Inky extends Ghost  {
+public class Inky extends Ghost implements Serializable {
      
 	public Inky(String imageName) {
 	      super(imageName);

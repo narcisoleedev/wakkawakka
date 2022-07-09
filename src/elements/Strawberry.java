@@ -4,7 +4,7 @@ import utils.Drawing;
 import java.awt.Graphics;
 import java.io.Serializable;
 
-public class Strawberry extends ElementGivePoint {
+public class Strawberry extends ElementGivePoint implements Serializable{
 	private long startTime=0;
 	public Strawberry(String imageName) {
         super(imageName);

@@ -13,14 +13,12 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-public abstract class Ghost extends ElementMove {
+public abstract class Ghost extends ElementMove implements Serializable {
     
     
     public Ghost(String imageName) {
         super(imageName);
     }
-    
-     
     
     abstract public void autoDraw(Graphics g);
     
@@ -68,7 +66,9 @@ public abstract class Ghost extends ElementMove {
         }
         else if(movDirectionPacman==MOVE_DOWN ||movDirectionPacman==MOVE_UP){
         	followPacmanVertical(movDirectionPacman, posPacman);
-        }		
+        }else{
+			this.moveRandom();
+		}
 	}
     
     
@@ -113,7 +113,9 @@ public abstract class Ghost extends ElementMove {
         }
         else if(movDirectionPacman==MOVE_DOWN ||movDirectionPacman==MOVE_UP){
         	escapePacmanVertical(movDirectionPacman, posPacman);
-        }		
+        }else{
+			this.moveRandom();
+		}	
 	}
     
     

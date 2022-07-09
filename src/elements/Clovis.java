@@ -9,7 +9,7 @@ import java.util.Random;
 public class Clovis extends Ghost  {
      
 	public Clovis(String imageName) {
-	      super(imageName);
+	    super(imageName);
 	}
 
     @Override

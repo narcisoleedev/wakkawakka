@@ -17,7 +17,6 @@ public class GameController {
     	Pacman pacman=(Pacman) elemArray.get(0);
 		// NOTE: Verificação da existencia do monstro de lava da fase 4
 		int numberGhost=pacman.getNumberGhosttoEat();
-		System.out.println(Main.level);
 		if (Main.level == 4){
 			numberGhost = numberGhost + 1;
 		}

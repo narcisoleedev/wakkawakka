@@ -143,9 +143,28 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
 		
 	}
 
+    //NOTE
 	private void openSavedGame(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException{
-		        /*Apagar o throw e implementar o método openSavedGame aqui*/
-		        throw new FileNotFoundException();                 
+        FileInputStream fluxo = new FileInputStream(fileName);
+
+        ObjectInputStream faseSalva = new ObjectInputStream(fluxo);
+
+        stage = (Stage) faseSalva.readObject();
+
+        ArrayList<Element> arraySalvo = (ArrayList<Element>) faseSalva.readObject(); 
+
+        faseSalva.close();
+
+        pacman = (Pacman) arraySalvo.get(0); 
+        addElement(pacman);
+
+        Element eTemp;
+
+        for (int i = 1; i < arraySalvo.size(); i++) {
+            eTemp = arraySalvo.get(i);
+            addElement(eTemp);
+        }
+                   
     }
 
 	public final void addElement(Element elem) {
@@ -220,14 +239,28 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
             pacman.setMovDirection(Pacman.MOVE_RIGHT);
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             pacman.setMovDirection(Pacman.STOP);
-        } else if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+        } else if ((e.getKeyCode() == KeyEvent.VK_S) && (e.isControlDown()) && e.getKeyCode() == KeyEvent.VK_S) {
             saveElemArrayandStage(); 
  
         } 
     }
     
     private void saveElemArrayandStage() {
-    	System.out.println("Falta implementar");
+        try {
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream gameLoad = new ObjectOutputStream(file);
+
+            gameLoad.writeObject(stage);
+            gameLoad.writeObject(elemArray);
+
+            gameLoad.close();
+
+        } catch (Exception Exc) {
+            System.out.println(Exc.getMessage());
+            Exc.printStackTrace();
+        }
+
+    
  	}
 
 	/**

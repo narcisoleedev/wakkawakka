@@ -6,7 +6,7 @@ import utils.Position;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
-public class Pinky extends Ghost  {
+public class Pinky extends Ghost  implements Serializable{
      
 	public Pinky(String imageName) {
 	      super(imageName);
@@ -33,7 +33,9 @@ public class Pinky extends Ghost  {
 				escapePacmanVertical(movDirectionPacman, posPacman);
 			}
 
-        }
+        }else {
+			moveRandom();
+		}
         Drawing.draw(g, this.imageIcon, pos.getY(), pos.getX());
 
     }

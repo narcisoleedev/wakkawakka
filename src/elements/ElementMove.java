@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
 
-public abstract class ElementMove extends Element  {
+public abstract class ElementMove extends Element  implements Serializable {
     
     public static final int STOP = 0;
     public static final int MOVE_LEFT = 1;
