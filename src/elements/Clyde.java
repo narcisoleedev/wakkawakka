@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Clyde extends Ghost  {
+public class Clyde extends Ghost implements Serializable  {
      
 	public Clyde(String imageName) {
 	      super(imageName);

@@ -3,7 +3,7 @@ package elements;
 import utils.Drawing;
 import java.awt.Graphics;
 import java.io.Serializable;
-public class Cherry extends ElementGivePoint {
+public class Cherry extends ElementGivePoint implements Serializable {
 	private long startTime=0;
     public Cherry(String imageName) {
         super(imageName);

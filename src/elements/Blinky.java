@@ -6,7 +6,7 @@ import utils.Position;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
-public class Blinky extends Ghost  {
+public class Blinky extends Ghost implements Serializable {
      
 	public Blinky(String imageName) {
 	      super(imageName);

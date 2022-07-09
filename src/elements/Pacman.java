@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 
 
-public class Pacman extends ElementMove  {
+public class Pacman extends ElementMove implements Serializable {
     
     private int score=0;
     private int remainingScore=0;

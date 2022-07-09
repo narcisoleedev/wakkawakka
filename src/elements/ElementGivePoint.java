@@ -4,7 +4,7 @@ import utils.Drawing;
 import java.awt.Graphics;
 import java.io.Serializable;
 
-public class ElementGivePoint extends Element {
+public class ElementGivePoint extends Element implements Serializable {
     protected  int numberPoints=0;
     
 	public int getNumberPoints(){
