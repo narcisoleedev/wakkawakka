@@ -17,28 +17,29 @@ public abstract class ElementMove extends Element  implements Serializable {
     
     private int movDirection = STOP;
     
+    //Pega a direção do movimento.
     public int getMoveDirection(){
     	return movDirection;
     }
     
+    //Pega a imagem do elemento.
     public ElementMove(String imageName) {
         super(imageName);
     }
     
-     
-    
     abstract public void autoDraw(Graphics g);
     
-    
-
+    //Volta pra posição antes da ultima ação.
     public void backToLastPosition(){
         this.pos.comeBack();
     }
     
+    //Seta a direção do movimento do elemento.
     public void setMovDirection(int direction) {
         movDirection = direction;
     }
     
+    //Movimenta o elemento.
     public void move() {
         switch (movDirection) {
             case MOVE_LEFT:
@@ -57,18 +58,19 @@ public abstract class ElementMove extends Element  implements Serializable {
                 break;
         }
     }
+    //Move para cima.
     public boolean moveUp() {
         return this.pos.moveUp();
     }
-
+    //Move para baixo.
     public boolean moveDown() {
         return this.pos.moveDown();
     }
-
+    //Move para o lado direito.
     public boolean moveRight() {
         return this.pos.moveRight();
     }
-
+    //Move para o lado esquerdo.
     public boolean moveLeft() {
         return this.pos.moveLeft();
     }

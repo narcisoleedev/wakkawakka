@@ -6,8 +6,9 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Clovis extends Ghost  {
+/*public class Clovis extends Ghost  {
      
+    //
 	public Clovis(String imageName) {
 	    super(imageName);
 	}
@@ -29,4 +30,11 @@ public class Clovis extends Ghost  {
     }
 
 
+}*/
+public class Clovis extends Blinky{
+     
+    //
+	public Clovis(String imageName) {
+	    super(imageName);
+	}
 }

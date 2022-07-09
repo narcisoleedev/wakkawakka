@@ -10,10 +10,12 @@ import java.util.Random;
 
 public class Inky extends Ghost implements Serializable {
      
+	//Pega a imagem do Inky.
 	public Inky(String imageName) {
 	      super(imageName);
 	}
     @Override
+	//Desenha o Inky.
     public void autoDraw(Graphics g){
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();

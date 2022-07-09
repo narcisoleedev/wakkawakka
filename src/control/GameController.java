@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 import utils.Consts;
 import utils.Position;
 
+import java.lang.Math.*;
 public class GameController {
 	
+	//Desenha os elementos na tela.
     public void drawAllElements(ArrayList<Element> elemArray, Graphics g){
     	Pacman pacman=(Pacman) elemArray.get(0);
 		// NOTE: Verificação da existencia do monstro de lava da fase 4
@@ -20,16 +22,15 @@ public class GameController {
 		if (Main.level == 4){
 			numberGhost = numberGhost + 1;
 		}
-    	
     	for(int i=numberGhost+1; i<elemArray.size(); i++){
             elemArray.get(i).autoDraw(g);
         }
-        
         for(int i=0;i<=numberGhost;i++){
         	elemArray.get(i).autoDraw(g);
         }
         
     }
+	//Faz o processamento do jogo.
     public void processAllElements(ArrayList<Element> elements, int [][]matrix, int cont){
         if(elements.isEmpty())
             return;
@@ -86,6 +87,7 @@ public class GameController {
         }
     }
     
+	//Verifica se o Pacman pode comer o fantasma.
 	private boolean checkOverlapGhostPacman(ArrayList<Element> elements, Pacman pacman,int numberGhost) {
         boolean overlapGhostPacman=false;
         for (int i=1;i<=numberGhost;i++){
@@ -95,6 +97,7 @@ public class GameController {
         }
         return overlapGhostPacman;
 	}
+	//Verifica se o elemento em questão se colide com a parede.
 	private void checkElementColideWall(ArrayList<Element> elements, int numberGhost) {
     	for (int i=0;i<=numberGhost;i++){
         	ElementMove elementMove = (ElementMove)elements.get(i);
@@ -106,6 +109,7 @@ public class GameController {
         }
 		
 	}
+	//Desenha os elementos na tela.
 	private void checkPacmanEatSomeOneAndOrTimeFruittoDesappear(ArrayList<Element> elements, Pacman pacman) {
 
         Element eTemp;
@@ -115,6 +119,7 @@ public class GameController {
                 if(eTemp.isTransposable() && eTemp.isMortal()){
                     elements.remove(eTemp);
                     if (eTemp instanceof Ghost){
+					  ((Ghost) eTemp).ghostDeathAnimation("exp.png");
                   	  pacman.minusNumberGhotstoEat();
                   	  pacman.addScore(200*(4-pacman.getNumberGhosttoEat()));
                   	  pacman.addRemainingScore(200*(4-pacman.getNumberGhosttoEat()));
@@ -165,6 +170,8 @@ public class GameController {
         }
         
 	}
+
+	//Verifica a hora de aparecer as frutas especiais
 	private void checkTimetoAppearFruit(ArrayList<Element> elements,  int [][]matrix) {
         
         long elapsedTime = System.currentTimeMillis()-Main.time;
@@ -185,6 +192,7 @@ public class GameController {
 		
 	}
 	
+	//Posição do mapa
 	private Position getValidRandomPositionMatrix(int[][] matrix) {
 		Random gerador = new Random();
 		int x;
@@ -197,6 +205,8 @@ public class GameController {
 		pos.setPosition(x, y);
 		return pos;
 	}
+
+	//Verifica o tempo da power pellet.
 	private void checkTimeGhostBeNormal(ArrayList<Element> elements,
 			Pacman pacman) {
         long start=pacman.getStartTimePower();
@@ -224,7 +234,6 @@ public class GameController {
         			if(e instanceof Clyde){
         				((Clyde) e).changeGhosttoNormal("clyde.png");
         			}
-
 					if(e instanceof Clovis){
         				((Clovis) e).changeGhosttoNormal("lavaMonster.png");
         			}
@@ -239,6 +248,7 @@ public class GameController {
 		
 	}
 
+	//Verifica se a poisção do elemento é valida.
 	public boolean isValidPosition(ArrayList<Element> elemArray, Element elem){
         Element elemAux;
         for(int i = 1; i < elemArray.size(); i++){

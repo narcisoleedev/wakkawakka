@@ -15,13 +15,14 @@ import javax.swing.ImageIcon;
 
 public abstract class Ghost extends ElementMove implements Serializable {
     
-    
+    //Pega a imagem do fantasma.
     public Ghost(String imageName) {
         super(imageName);
     }
     
     abstract public void autoDraw(Graphics g);
     
+	//Muda o fantasma para o estado mortal (quando ele fica azul).
     public void changeGhosttoBlue(String imageName) {
         this.isTransposable = true;
         this.isMortal = true;
@@ -39,6 +40,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
         }
     }
 
+	//Muda o fantasma para o estado normal.
     public void changeGhosttoNormal(String imageName) {
         this.isTransposable = true;
         this.isMortal = false;
@@ -56,6 +58,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
         }
     }
 
+	//Segue o Pacman.
     protected void followPacman() {
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();
@@ -70,10 +73,23 @@ public abstract class Ghost extends ElementMove implements Serializable {
 			this.moveRandom();
 		}
 	}
-    
-    
 
+	//Animação da morte do pacman.
+    public void ghostDeathAnimation(String imageName) {
+        try {
+            imageIcon = new ImageIcon(new java.io.File(".").getCanonicalPath() + Consts.PATH + imageName);
+            Image img = imageIcon.getImage();
+            BufferedImage bi = new BufferedImage(Consts.CELL_SIZE, Consts.CELL_SIZE, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = bi.createGraphics();
+            g.drawImage(img, 0, 0, Consts.CELL_SIZE, Consts.CELL_SIZE, null);
+            imageIcon = new ImageIcon(bi);
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
+	//Segue o pacman na horizontal.
 	protected void followPacmanHorizontal(int movDirectionPacman,Position posPacman) {
        	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -88,6 +104,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
     		} 
     	}
 	}
+	//Segue o pacman na vertical.
 	protected void followPacmanVertical(int movDirectionPacman, Position posPacman) {
     	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -103,6 +120,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
     	}		
 	} 
 	
+	//Foge do pacman.
     protected void escapePacman() {
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();
@@ -118,9 +136,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
 		}	
 	}
     
-    
-
-    
+    //Foge do pacman na horizontal.
 	protected void escapePacmanHorizontal(int movDirectionPacman,Position posPacman) {
        	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -135,6 +151,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
     		} 
     	}
 	}
+	//Foge do pacman na vertical.
 	protected void escapePacmanVertical(int movDirectionPacman, Position posPacman) {
     	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -149,6 +166,7 @@ public abstract class Ghost extends ElementMove implements Serializable {
     		} 
     	}		
 	} 
+	//Move randomicamente.
 	protected void moveRandom() {
     	Random gerador = new Random();
     	this.setMovDirection(gerador.nextInt(5));		

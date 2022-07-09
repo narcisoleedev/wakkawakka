@@ -42,6 +42,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
     int cont = 0; 
     String fileName="jogo.ser";
     
+    //Inicia a tela.
     public GameScreen() {
     	Main.time = System.currentTimeMillis();
         Drawing.setGameScreen(this);
@@ -77,10 +78,12 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         }
     }
     
+    //Pega o pacman.
     public Pacman getPacman(){
     	return pacman;
     }    
     
+    //Preenche os espaços vazios.
     private void fillInitialElemArrayFromMatrix(int [][]matrix) {
 	 	pacman = new Pacman("pacman.png");
         pacman.setPosition(1,1);
@@ -102,7 +105,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         clyde.setPosition (8,9);
         this.addElement(clyde);
         
-        Clovis clovis = new Clovis("lavaMonster.png");
+        Clovis clovis = new Clovis("exp.png");
         clovis.setPosition(1,4);
         if (Main.level == 4) {
             this.addElement(clovis);
@@ -144,6 +147,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
 	}
 
     //NOTE
+    //Abre jogo salvo.
 	private void openSavedGame(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException{
         FileInputStream fluxo = new FileInputStream(fileName);
 
@@ -167,14 +171,17 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
                    
     }
 
+    //Adiciona elemento.
 	public final void addElement(Element elem) {
         elemArray.add(elem);
     }
     
+    //Remove o elemento.
     public void removeElement(Element elem) {
         elemArray.remove(elem);
     }
     
+    //Recomeça o jogo.
     public void reStartGame(int numberLifes){
     	elemArray.clear();
     	elemArray = new ArrayList<Element>();
@@ -186,6 +193,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
     }
     
     @Override
+    //Desenha a tela.
     public void paint(Graphics gOld) {
         Graphics g = getBufferStrategy().getDrawGraphics();
      
@@ -216,7 +224,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
             getBufferStrategy().show();
         }
     }
-    
+    //Começa o jogo.
     public void go() {
         TimerTask task = new TimerTask() {
             
@@ -228,6 +236,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         timer.schedule(task, 0, Consts.DELAY);
     }
     
+    //Verifica as comandos por teclas.
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             pacman.setMovDirection(Pacman.MOVE_UP);
@@ -245,6 +254,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         } 
     }
     
+    //Salva o elemento.
     private void saveElemArrayandStage() {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
@@ -255,9 +265,9 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
 
             gameLoad.close();
 
-        } catch (Exception Exc) {
-            System.out.println(Exc.getMessage());
-            Exc.printStackTrace();
+        } catch (Exception exc) {
+            System.out.println(exc.getMessage());
+            exc.printStackTrace();
         }
 
     

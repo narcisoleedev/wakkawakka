@@ -6,12 +6,14 @@ import utils.Position;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
-public class Pinky extends Ghost  implements Serializable{
+public class Pinky extends Ghost implements Serializable{
      
+	//Pega a imagem do Pinky.
 	public Pinky(String imageName) {
 	      super(imageName);
 	}
     @Override
+	//Desenha o Pinky.
     public void autoDraw(Graphics g){
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();

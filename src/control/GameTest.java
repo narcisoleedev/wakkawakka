@@ -7,6 +7,7 @@ import java.beans.Transient;
 
 public class GameTest{
     @Test 
+    //Testa a Main.
     public void testMain(){
         if(Main.initialScreen!=null){
             fail("Tela inicial iniciada antes.");
@@ -19,6 +20,7 @@ public class GameTest{
     }
 
     @Test
+    //Testa a tela inicial.
     public void testInitialScreen(){
         InitialScreen is = new InitialScreen();
         if(is==null){
@@ -27,6 +29,7 @@ public class GameTest{
     }
 
     @Test
+    //Testa a tela do jogo.
     public void testGameScreen(){
         GameScreen gs = new GameScreen();
         if(gs==null){

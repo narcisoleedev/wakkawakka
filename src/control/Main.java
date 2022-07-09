@@ -10,7 +10,7 @@ public class Main {
 	public static long time;
 	
 	public static GameScreen gamePacMan;
-	
+	//Inicia tudo.
     public static void main(String[] args) {
     	
     	initialScreen = new InitialScreen();
@@ -19,7 +19,7 @@ public class Main {
     	initialScreen.setVisible(true);
         
     }
-	
+	//Inicia o jogo.
     public static void startGame(){
     	java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

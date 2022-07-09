@@ -27,6 +27,7 @@ public class InitialScreen extends javax.swing.JFrame {
 	
 	private JComboBox<String> box;
 	
+	//Inicia os métodos de tela.
 	public InitialScreen(){
 		configureInitialScreen();
 		configureMenu();
@@ -35,6 +36,7 @@ public class InitialScreen extends javax.swing.JFrame {
 		configureComboBox();*/
 	}
 	
+	//Inicia a tela.
 	private void configureInitialScreen(){
 		int sizeWidth = Consts.NUM_CELLS * Consts.CELL_SIZE + getInsets().left + getInsets().right;
 		int sizeHeight = Consts.NUM_CELLS * Consts.CELL_SIZE + getInsets().top + getInsets().bottom;
@@ -55,6 +57,7 @@ public class InitialScreen extends javax.swing.JFrame {
         }	
         //pack();
 	}
+	//Configura o Menu.
 	private void configureMenu(){
 		JMenuBar barra = new JMenuBar();
 		setJMenuBar(barra);
@@ -73,11 +76,14 @@ public class InitialScreen extends javax.swing.JFrame {
 			i++;
 		}
 		HandlerOpenButton handleOpener = new HandlerOpenButton();
+		JMenuItem loadItem = new JMenuItem("Carregar Jogo");
+		loadItem.addActionListener(handleOpener);
 		JMenu load = new JMenu("Load");
-		load.addActionListener(handleOpener);
+		load.add(loadItem);
 		barra.add(lvl);
 		barra.add(load);
 	}
+	//Configura o botão de start.
 	private void configureStartButton(){
 		startButton = new JButton("Iniciar");
 		startButton.setSize(100, 50);
@@ -105,7 +111,7 @@ public class InitialScreen extends javax.swing.JFrame {
 		add(startButton);
 	}
 	
-	
+	//Configura o ComboBox.
 	private void configureComboBox(){
 		box = new JComboBox<String>(levels);
 		box.setSize(100, 40);
@@ -123,6 +129,7 @@ public class InitialScreen extends javax.swing.JFrame {
 	}
 
 	public class HandlerStartButton implements ActionListener{
+		//Ação de iniciar o jogo.
 		public void actionPerformed(ActionEvent ev){
 			if(ev.getSource()==lvls[0]) Main.level = 1;
 			else if(ev.getSource()==lvls[1]) Main.level = 2;
@@ -137,6 +144,7 @@ public class InitialScreen extends javax.swing.JFrame {
  
 	public class HandlerOpenButton implements ActionListener{
 		public void actionPerformed(ActionEvent ev){
+			//Ação de pegar o jogo inicializado.
 			Main.initialScreen.setVisible(false);  
 	    	Main.initialScreen.dispose();
 	    	Main.openSavedGame = true;

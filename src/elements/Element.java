@@ -15,6 +15,7 @@ public abstract class Element implements Serializable {
     protected boolean isTransposable; 
     protected boolean isMortal;       
 
+    //Inicializa os atributos padrão de um elemento.
     protected Element(String imageName) {
         this.pos = new Position(1, 1);
         this.isTransposable = true;
