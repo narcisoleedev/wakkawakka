@@ -12,6 +12,7 @@ public class Pacman extends ElementMove implements Serializable {
     private int numberLifes=1;
     private int numberDotstoEat=0;
     private int numberGhosttoEat=4;
+	private int pelletGhostCounter=0;
     private long startTimePower=0;
     
     //Seta atributos do pacman.
@@ -88,6 +89,14 @@ public class Pacman extends ElementMove implements Serializable {
 
 	public int getNumberGhosttoEat() {
 		return numberGhosttoEat;
+	}
+
+	public int getPelletGhostCounter() {
+		return pelletGhostCounter;
+	}
+
+	public int setPelletGhostCounter(int i) {
+		this.pelletGhostCounter = i;
 	}
 
 

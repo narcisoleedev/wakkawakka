@@ -121,8 +121,11 @@ public class GameController {
                     if (eTemp instanceof Ghost){
 					  ((Ghost) eTemp).ghostDeathAnimation("exp.png");
                   	  pacman.minusNumberGhotstoEat();
-                  	  pacman.addScore(200*(4-pacman.getNumberGhosttoEat()));
-                  	  pacman.addRemainingScore(200*(4-pacman.getNumberGhosttoEat()));
+                  	  pacman.addScore(200*Math.pow(2, pacman.getPelletGhostCounter()));
+                  	  pacman.addRemainingScore(200*Math.pow(2, pacman.getPelletGhostCounter()));
+                      pacman.setPelletGhostCounter(pacman.getPelletGhostCounter() + 1);
+
+                      System.out.println("SCORE: " + pacman.getScore() + " // " + "REMAINING SCORE: " + pacman.getRemainingScore());
                     } 
                     
                     if (eTemp instanceof ElementGivePoint){                     
@@ -215,6 +218,7 @@ public class GameController {
         	if(elapsedTimePower>=7000){
         		
         		pacman.setStartTimePower(0);
+                pacman.setPelletGhostCounter(0);
         		Element e;
 				int aux = pacman.getNumberGhosttoEat();
 				if (Main.level == 4){
